@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="mystyle.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</head>
+<body class="b1" background-color="#f5efec">
+<div class="d1">
+
+<form method="post" th:action="@{/register}" th:object="${user}">
+
+<input type="text" name="name" placeholder="نام" th:field="*{name}" >
+    <hr>
+    <input type="text" name="family" placeholder="نام خانوادگی" th:field="*{family}" >
+    <hr>
+    <input type="number" name="phone" placeholder="شماره موبایل" th:field="*{phone}" >
+    <hr>
+    <input type="email" name="email" placeholder="پست الکترونیکی" th:field="*{email}">
+    <p th:if="${registerStatus == 'duplicate'}">ایمیل وارد شده تکراری میباشد </p>
+    <hr>
+    <input type="paswword" name="password" placeholder="پسورد" th:field="*{password}">
+<button type="submit">ثبت</button>
+</form>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login_Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="mystyle.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <div class="d1" th:if="${#httpSession != null && #httpSession.getAttribute('userEmail') != null}">
+        <canvas id="myCanvas" width="200" height="100"
+                style="border:1px solid #d3d3d3;">
+            Your browser does not support the canvas element.
+        </canvas>
+        <script>
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            ctx.font = "30px Arial";
+            var data = "[[${accountname}]]";
+            ctx.strokeText(data+" خوش آمدید ", 10, 50);
+
+        </script></div>
+
+</head>
+<body class="b1" background-color="#f5efec">
+
+
+<div class="d1">
+
+<div th:if="${#httpSession != null && #httpSession.getAttribute('userEmail') != null}">
+
+    <a href="/edit">ویرایش</a>
+    <hr>
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="خروج">
+    </form>
+</div>
+<div th:unless="${#httpSession != null && #httpSession.getAttribute('userEmail') != null}">
+    <a href="/login">ورود</a>
+    <hr>
+    <a href="/register">ثبت نام</a>
+</div>
+</div>
+<p th:if="${loginstate == 'notRegistered'}">شما باید ابتدا ثبت نام گنید! </p>
+
+</body>
+</html>
